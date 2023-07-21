@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\PersonController;
+use App\Response\ApiResponse;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -9,12 +9,16 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
 |
 */
 
 Route::get('/', function () {
-    $version = '1.0';
-    return "Bravi API: {$version}";
+    $version = App\Utils\ApplicationVersion::get();
+    return "Packk Admin API: {$version}";
 });
+
+Route::get("unauthenticated", function () {
+    return ApiResponse::sendError("Unauthenticated.", 401);
+})->name('unauthenticated');;

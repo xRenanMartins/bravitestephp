@@ -1,0 +1,52 @@
+version: '3'
+services:
+
+  #PHP Service
+  apiadmin:
+    build: .docker/
+    container_name: apiadmin
+    restart: unless-stopped
+    environment:
+      SERVICE_NAME: apiadmin
+      SERVICE_TAGS: dev
+      REDIS_HOST: redisadmin
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www
+    networks:
+      - admin-network
+
+  #Nginx Service
+  nginx-admin:
+    image: nginx:alpine
+    container_name: nginxadmin
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "8100:80"
+    volumes:
+      - ./:/var/www
+      - .docker/nginx/conf.d/:/etc/nginx/conf.d/
+    networks:
+      - admin-network
+  
+  # Redis service
+  redis-admin:
+    image: redis:alpine
+    container_name: redisadmin
+    command: redis-server
+    restart: unless-stopped
+    ports:
+      - "63792:6379"
+    networks:
+      - admin-network
+
+#Docker Networks
+networks:
+  admin-network:
+    driver: bridge
+
+#Volumes
+volumes:
+  dbdata:
+    driver: local

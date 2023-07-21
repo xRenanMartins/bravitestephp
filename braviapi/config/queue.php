@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'default' => env('QUEUE_CONNECTION', 'sync'),
+    'default' => env('QUEUE_CONNECTION', 'redis'),
 
     /*
     |--------------------------------------------------------------------------
@@ -53,13 +53,19 @@ return [
 
         'sqs' => [
             'driver' => 'sqs',
-            'key' => env('AWS_ACCESS_KEY_ID'),
-            'secret' => env('AWS_SECRET_ACCESS_KEY'),
+            'key' => env('SQS_KEY', 'your-public-key'),
+            'secret' => env('SQS_SECRET', 'your-secret-key'),
             'prefix' => env('SQS_PREFIX', 'https://sqs.us-east-1.amazonaws.com/your-account-id'),
-            'queue' => env('SQS_QUEUE', 'default'),
-            'suffix' => env('SQS_SUFFIX'),
-            'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
-            'after_commit' => false,
+            'queue' => env('SQS_QUEUE', 'your-queue-name'),
+            'region' => env('SQS_REGION', 'us-east-1'),
+        ],
+        'sqs-plain' => [
+            'driver' => 'sqs-plain',
+            'key' => env('SQS_KEY', 'your-public-key'),
+            'secret' => env('SQS_SECRET', 'your-secret-key'),
+            'prefix' => env('SQS_PREFIX', 'https://sqs.us-east-1.amazonaws.com/your-account-id'),
+            'queue' => env('SQS_QUEUE', 'your-queue-name'),
+            'region' => env('SQS_REGION', 'us-east-1'),
         ],
 
         'redis' => [
@@ -71,22 +77,6 @@ return [
             'after_commit' => false,
         ],
 
-    ],
-
-    /*
-    |--------------------------------------------------------------------------
-    | Job Batching
-    |--------------------------------------------------------------------------
-    |
-    | The following options configure the database and table that store job
-    | batching information. These options can be updated to any database
-    | connection and table which has been defined by your application.
-    |
-    */
-
-    'batching' => [
-        'database' => env('DB_CONNECTION', 'mysql'),
-        'table' => 'job_batches',
     ],
 
     /*
