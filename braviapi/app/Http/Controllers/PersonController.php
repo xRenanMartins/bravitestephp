@@ -32,7 +32,7 @@ class PersonController extends Controller
 
     public function show(Request $request, $id){
         try{
-            return ApiResponse::sendResponse(Person::findOrFail($id)->with('contacts')->get());
+            return ApiResponse::sendResponse(Person::findOrFail($id)->with('contacts')->first());
         }catch(Exception $exception) {
             return ApiResponse::sendError($exception);
         }

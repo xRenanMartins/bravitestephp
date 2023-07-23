@@ -1,11 +1,7 @@
 <div class="card menu-color">
-    <p-menubar styleClass="mb-4" [model]="items">
+    <p-menubar styleClass="mb-2" [model]="items">
         <ng-template pTemplate="start" class="ml-2">
             <a href="/"><img src="../../../assets/bravi-favicon-1.png" height="40" class="mr-4" /></a>
-        </ng-template>
-        <ng-template pTemplate="end">
-            <button type="button" pButton pTooltip="Adicionar" tooltipPosition="top" icon="pi pi-plus"
-        (click)="addPerson()"></button>
         </ng-template>
     </p-menubar>
 

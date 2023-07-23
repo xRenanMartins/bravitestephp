@@ -2,18 +2,23 @@
 
 namespace App\Rules\Contact;
 
-use Closure;
-use Illuminate\Contracts\Validation\ValidationRule;
+use App\Models\Contact;
 
-class CreateContact implements ValidationRule
+class CreateContact
 {
-    /**
-     * Run the validation rule.
-     *
-     * @param  \Closure(string): \Illuminate\Translation\PotentiallyTranslatedString  $fail
-     */
-    public function validate(string $attribute, mixed $value, Closure $fail): void
+    protected $payload;
+    public function execute($payload)
     {
-        //
+        $this->payload = $payload;
+    
+        $contact = new Contact();
+        $contact->person_id = $this->payload['person_id'];
+        $contact->phone = $this->payload['phone'];
+        $contact->email = $this->payload['email'];
+        $contact->whatsapp = $this->payload['whatsapp'];
+        
+        $contact->save();
+        
+        return $contact;
     }
 }

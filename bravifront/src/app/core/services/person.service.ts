@@ -27,26 +27,17 @@ export class PersonService {
     });
   }
 
-  getRegioes(payload: any): Observable<any[]> {
-    return this.httpClient.get<any[]>(`${this.base_url}/regioes`, {
-      params: this.prepareParams(payload),
-    });
+  create(payload: any): Observable<any> {
+    return this.httpClient.post<any>(`${environment.url_ms}`+this.base_url, payload);
   }
-
-  create(payload: any): Observable<any[]> {
-    return this.httpClient.get<any[]>(`${this.base_url}/create`, {
-      params: this.prepareParams(payload),
-    });
-  }
-
-  store(payload: any): Observable<any> {
-    return this.httpClient.post<any>(this.base_url, payload);
-  }
-
+  
   update(payload: any): Observable<any> {
-    return this.httpClient.put<any>(
-      `${this.base_url}/${payload.id}`,
-      payload
+  return this.httpClient.put<any>(
+    `${environment.url_ms}${this.base_url}/${payload.id}/update`, payload
     );
+  }
+
+  delete(id: any): Observable<any> {
+    return this.httpClient.delete<any>(`${environment.url_ms}${this.base_url}/${id}/delete`);
   }
 }

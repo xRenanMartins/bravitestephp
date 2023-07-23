@@ -17,15 +17,14 @@ export class MenubarComponent implements OnInit {
   ngOnInit(): void {
     this.items = [
       {
-          label: 'Contatos',
+          label: 'Pessoas',
           icon: 'pi pi pi-user',
           command: () => {
-            this.router.navigateByUrl(`/contacts`);
+            this.router.navigateByUrl(`/persons`);
           },
       }
     ];
   }
-  addPerson(){
-    this.router.navigateByUrl(`/contacts/add`);
-  }
+
+  
 }

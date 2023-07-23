@@ -3,10 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'contacts',
+    path: 'persons',
     loadChildren: () =>
-      import('./modules/contact/contact.module').then(
-        (m) => m.ContactModule
+      import('./modules/person/person.module').then(
+        (m) => m.PersonModule
       ),
     data: { title: 'Lista de Contatos' },
   },

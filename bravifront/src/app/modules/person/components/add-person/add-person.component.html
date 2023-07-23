@@ -1,0 +1,18 @@
+<p-messages></p-messages>
+<div class="mt-1">
+    <p-card>
+        <form [formGroup]="form" >
+            <div class="flex flex-column gap-2">
+                <label htmlFor="name">Nome</label>
+                <input pInputText id="name" formControlName="name" />
+            </div>
+            <div class="flex flex-column gap-2 mt-1">
+                <label htmlFor="lastname">Sobrenome</label>
+                <input pInputText id="lastname" formControlName="lastname" />
+            </div>
+            <div class="flex justify-content-center mt-2">
+                <button pButton class="p-button-success" (click)="save()" [attr.disabled]="!form.valid ? true : null">Salvar</button>
+            </div>
+        </form>
+    </p-card>
+</div>

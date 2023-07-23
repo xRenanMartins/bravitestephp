@@ -31,21 +31,4 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
-    'sparkpost' => [
-        'secret' => env('MAIL_PASSWORD', ''),
-        'guzzle' => [
-            'verify' => true,
-            'decode_content' => true
-        ],
-        'options' => [
-            'endpoint' => null,
-            'return_path' => 'contato@spark.shipp.delivery',
-            'options' => [
-                'open_tracking' => false,
-                'click_tracking' => false,
-                'transactional' => true,
-            ],
-        ],
-    ],
-
 ];

@@ -30,10 +30,6 @@ class ApiResponse
 
     public static function sendUnexpectedError(\Exception $exception, $status = 500): JsonResponse
     {
-//        if (!isLocalEnv()) {
-//            app('sentry')->captureException($exception);
-//        }
-
         return response()->json([
             'success' => false,
             'message' => 'Ocorreu uma falha inesperada ao realizar a ação solicitada. Tente novamente!',
@@ -44,4 +40,5 @@ class ApiResponse
             ]
         ], $status);
     }
+
 }

@@ -1,0 +1,41 @@
+
+<div class="align-end mb-2">
+    <button type="button" label="Adicionar pessoa" pButton pTooltip="Adicionar pessoa" tooltipPosition="top" icon="pi pi-plus"
+    (click)="addPerson()"></button>
+</div>
+<p-messages></p-messages>
+<p-confirmDialog acceptLabel="Sim" rejectLabel="Não" ></p-confirmDialog>
+<p-table [value]="persons" [tableStyle]="{ 'min-width': '50rem' }" *ngIf="!isLoading">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Nome</th>
+            <th>Sobrenome</th>
+            <th class="text-center"><i class="pi pi-list"></i></th>
+            <th class="text-center"><i class="pi pi-user-edit"></i></th>
+            <th class="text-center"><i class="pi pi-trash"></i></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-person>
+        <tr>
+            <td>{{ person.name }}</td>
+            <td>{{ person.lastname }}</td>
+            <td class="text-center">
+                <p-button styleClass="p-button-info" pTooltip="Lista contatos" tooltipPosition="top" icon="pi pi-list" (click)="listContacts(person.contacts, person.id)"></p-button>
+            </td>
+            <td class="text-center">
+                <p-button styleClass="p-button-info" pTooltip="Editar pessoa" tooltipPosition="top" icon="pi pi-pencil" (click)="editPerson(person)"></p-button>
+            </td>
+            <td class="text-center">
+                <p-button styleClass="p-button-danger" pTooltip="Deletar pessoa" tooltipPosition="top" icon="pi pi-trash" (click)="deletePerson(person.id)"></p-button>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
+<ng-container *ngIf="!isLoading && !persons.length">
+    <div class="p-text-center">
+      <h3>Nada encontrado</h3>
+    </div>
+  </ng-container>
+<div class="w-100 mt-4 text-center" *ngIf="isLoading">
+    <p-progressSpinner></p-progressSpinner>
+</div>
