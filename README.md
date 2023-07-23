@@ -13,7 +13,8 @@ Para instalar e rodar a api execute os seguintes comandos:
     ./vendor/bin/sail up -d
 
 -Front Angular
-Para instalar e rodar o front basta executar os seguintes comandos:
+
+Para instalar e rodar o front execute os seguintes comandos:
 
     cd bravifront
     npm install
